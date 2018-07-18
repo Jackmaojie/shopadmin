@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- namespace对应接口名 -->
+  <mapper namespace="shopadmin.mapper.CellphoneMapper">
+  <select id="findAll" resultType="shopadmin.model.Cellphone">
+  	select c.c_id id,c.c_brand brand,c.c_model model,c.c_os os,c.c_cpubrand cpubrand,c.c_ram ram,
+  		c.c_storage storage,c.c_color color,c.c_description description,c.c_price price
+  	from cellphone c
+  	
+  </select>
+  
+  <select id="findOne" resultType="shopadmin.model.Cellphone">
+  	 select c_id id,c_brand brand,c_model model,c_os os,c_cpubrand cpubrand,c_ram ram,
+  		c_storage storage,c_color color,c_description description,c_price price
+  	from cellphone where c_id=#{id}
+  </select>
+  
+  <select id="nameExists" resultType="Integer">
+  	select count(c_model) from cellphone where c_model=#{model}
+  </select>
+  
+  <insert id="create">
+  	insert into cellphone  
+  		(c_id,c_brand,c_model,c_os,c_cpubrand,c_ram,c_storage,c_color,c_description,c_price) 
+  	values('IMEI'||cellphone_id_seq.nextval ||'CN',#{brand},#{model},#{os},#{cpubrand},
+  		#{ram},#{storage},#{color},#{description},#{price})
+  </insert>
+  
+  <update id="update">
+  	update cellphone set c_brand=#{brand},c_model=#{model},c_os=#{os},c_cpubrand=#{cpubrand},c_ram=#{ram},
+  	c_storage=#{storage},c_color=#{color},c_description=#{description},c_price=#{price} where c_id=#{id}
+  </update>
+  
+  <delete id="delete">
+  	delete from cellphone where c_id=#{id}
+  </delete>
+  </mapper>

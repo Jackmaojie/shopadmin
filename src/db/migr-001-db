@@ -1,0 +1,31 @@
+create table cellphone (
+       c_id varchar2(128) primary key,
+       c_brand varchar2(64) not null,
+       c_model varchar(64) not null,
+       c_os varchar2(64),
+       c_cpubrand varchar2(32),
+       c_ram number,
+       c_storage number,
+       c_color varchar2(32),
+       c_description varchar2(128),
+       c_price number      
+);
+
+select * from cellphone;
+
+drop table cellphone;
+
+create sequence cellphone_id_seq start with 1000 increment by 1 maxvalue 99999999 minvalue 999;
+
+insert into cellphone values(
+       '#IMEI'||cellphone_id_seq.nextval ||'#'，
+       '华为',
+       '荣耀V12',
+       'Android',
+       '麒麟1000',
+       10240,
+       256,
+       '土豪金',
+       '采用徕卡三摄，高档大气上档次',
+       3000
+);
