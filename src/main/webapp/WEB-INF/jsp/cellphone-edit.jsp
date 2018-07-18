@@ -31,12 +31,12 @@
 		</div>
 		<div>
 			<label for="ram">运行内存:</label>
-			<form:input type="text" path="ram" id="ram" />
+			<form:input type="text" path="ram" id="ram" />MB
 			<form:errors path="ram" cssClass="field-error"></form:errors>
 		</div>
 		<div>
 			<label for="storage">内　　存:</label>
-			<form:input type="text" path="storage" id="storage" />
+			<form:input type="text" path="storage" id="storage" />GB
 			<form:errors path="storage" cssClass="field-error"></form:errors>
 		</div>
 		<div>
@@ -51,7 +51,7 @@
 		</div>
 		<div>
 			<label for="price">价　　格:</label>
-			<form:input type="text" path="price" id="price" />
+			<form:input type="text" path="price" id="price" />分
 			<form:errors path="price" cssClass="field-error"></form:errors>
 		</div>
 		<div>
