@@ -1,12 +1,11 @@
 package shopadmin.model;
 
-import java.sql.Date;
 
 public class CellphoneUser {
 	private Long id;
 	private String username;
 	private Gender gender;
-	private Date lastdate;
+	private String lastdate;
 	public Long getId() {
 		return id;
 	}
@@ -28,7 +27,7 @@ public class CellphoneUser {
 	public String getLastdate() {
 		return String.valueOf(lastdate);
 	}
-	public void setLastdate(Date lastdate) {
+	public void setLastdate(String lastdate) {
 		this.lastdate = lastdate;
 	}
 	

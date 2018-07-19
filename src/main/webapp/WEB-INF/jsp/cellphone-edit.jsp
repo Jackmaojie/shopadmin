@@ -11,7 +11,14 @@
 	<form:form action="" method="post" commandName="cellphoneForm">
 		<div>
 			<label for="brnad">品　　牌:</label>
-			<form:input type="text" path="brand" id="brand" />
+			<form:select path="brand">
+				<form:option value="">--请选择品牌--</form:option>
+				<form:option value="苹果">苹果</form:option>
+				<form:option value="华为">华为</form:option>
+				<form:option value="小米">小米</form:option>
+				<form:option value="vivo">vivo</form:option>
+				<form:option value="魅族">魅族</form:option>	
+			</form:select>
 			<form:errors path="brand" cssClass="field-error"></form:errors>
 		</div>
 		<div>

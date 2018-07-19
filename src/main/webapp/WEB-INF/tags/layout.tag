@@ -9,7 +9,9 @@
 <title>手机</title>
 <link href="${contextPath}/assets/css/form.css" rel="stylesheet">
 	<style type="text/css">
-		
+		.ultable{
+			display: inline-block;
+		}	
 	</style>
 </head>
 <body>
@@ -19,10 +21,25 @@
 			<li><a href="${contextPath}/cellphones/">手机列表</a></li>	
 			<li><a href="${contextPath}/cellphones/add">上架手机</a></li>					
 		</ul> 
-		<ul>
+		<ul class="ultable">
 			<li>用户</li>
 			<li><a href="${contextPath}/cellphoneusers/">用户列表</a></li>
 		</ul>	
+		
+		<table>
+			<tr>
+				<th>手　　机</th>
+				<th>用　　户</th>
+			</tr>	
+			<tr>
+				<td><a href="${contextPath}/cellphones/">手机列表</a></td>
+				<td><a href="${contextPath}/cellphoneusers/">用户列表</a></td>
+			</tr>
+			<tr>
+				<td><a href="${contextPath}/cellphones/add">上架手机</a></td>
+				<td></td>
+			</tr>
+		</table>
 	</div>
 	
   	<div class="content">

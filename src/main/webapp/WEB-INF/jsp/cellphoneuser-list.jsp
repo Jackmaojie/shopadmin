@@ -4,11 +4,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"></c:set>
 <t:layout title="用户列表">
+	<style type="text/css">
+		.menu {
+			display: inline-block;
+			color: #00AA00;
+		}
+	</style>
 	<div>
-		<ul>
+		<ul class="menu">
 			<c:forEach items="${cellphoneUsers}" var="cellphoneUser">
-				<li><a href="${contextPath}/cellphoneusers/${cellphoneUser.id}">${cellphoneUser.username}</a> 
-				${cellphoneUser.gender}<br> ${cellphoneUser.lastdate}</li>
+				<li>${cellphoneUser.username}<br>
+					<a href="${contextPath}/cellphoneusers/${cellphoneUser.id}">详情</a> 
+				</li>
 			</c:forEach>
 
 		</ul>
