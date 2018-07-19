@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- namespace对应接口名 -->
+  <mapper namespace="shopadmin.mapper.CellphoneUserMapper">
+  <select id="findAll" resultType="shopadmin.model.CellphoneUser">
+	select u_id id,u_username username,u_gender gender,u_password password, lastdate from cellphone_user
+  	
+  </select>
+  
+  <select id="findOne" resultType="shopadmin.model.CellphoneUser">
+	select u_username username,u_gender gender,u_password password, lastdate from cellphone_user
+	where u_id=#{id}
+  </select>
+  
+  
+  
+
+  
+  </mapper>
