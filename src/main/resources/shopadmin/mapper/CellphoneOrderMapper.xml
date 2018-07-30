@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- namespace对应接口名 -->
+  <mapper namespace="shopadmin.mapper.CellphoneOrderMapper">
+	<select id="findAllOrder" resultMap="celphoneOrderDetailsMap">
+		select co.cellphone_order_id order_id,co.order_creation_time createtime,
+      			cu.u_id u_id,cu.u_username username,cu.u_gender gender,cu.lastdate lastdate 
+      	from cellphone_order co 
+		inner join cellphone_user cu on order_user_id=u_id 
+		order by cellphone_order_id asc
+	</select>
+	<resultMap type="CellphoneOrder" id="celphoneOrderDetailsMap">
+		<id column="order_id" property="id" />
+		<result column="createtime" property="createtime" />
+		<association property="cellphoneUser" javaType="CellphoneUser">
+			<id column="u_id" property="id" />
+			<result column="username" property="username" />
+			<result column="gender" property="gender" />
+			<result column="lastdate" property="lastdate" />
+		</association>
+	</resultMap>
+	<select id="findOneOrder" resultMap="celphoneOrderDetailsMapTwo">
+		select 
+    		co.order_creation_time order_creation_time,
+    		co.cellphone_order_id cellphone_order_id,
+    		co.order_user_id order_user_id,
+    		ra.detailed_address detailed_address,ra.address_id address_id,
+    		ra.receiving_name receivingname,ra.phonenumber phonenumber,
+    		cu.u_id u_id,cu.u_username username,cu.u_gender gender,cu.lastdate lastdate,
+    		otc.orderitem_amount orderitem_amount,
+    		otc.orderitem_id orderitem_id,otc.orderitem_cellphone_id orderitem_cellphone_id,
+    		c.c_id c_id,c.c_brand c_brand,c.c_model c_model,c.c_price c_price    
+		from cellphone_order co 
+		inner join receiving_address ra on co.oreder_address_id=ra.address_id 
+		inner join cellphone_user cu on order_user_id=u_id 
+		inner join ordetitem_cellphone otc on co.cellphone_order_id=otc.orderitem_id  
+		inner join cellphone c on otc.orderitem_cellphone_id=c.c_id 
+		where co.cellphone_order_id = #{id}
+	</select>
+	<resultMap type="CellphoneOrder" id="celphoneOrderDetailsMapTwo">
+		<id column="cellphone_order_id" property="id" />
+		<result column="order_creation_time" property="createtime" />
+		
+		<association property="receivingAddress" javaType="ReceivingAddress">
+			<id column="address_id" property="id" />
+			<result column="receivingname" property="receivingname" />
+			<result column="phonenumber" property="phonenumber" />
+			<result column="detailed_address" property="detailedaddress" />
+		</association>
+		
+		<association property="cellphoneUser" javaType="CellphoneUser">
+			<id column="u_id" property="id" />
+			<result column="username" property="username" />
+			<result column="gender" property="gender" />
+			<result column="lastdate" property="lastdate" />
+		</association>	
+		
+		<collection property="orderItems" ofType="OrderItem">
+			<id column="orderitem_id" />
+			<id column="orderitem_cellphone_id" />
+			<result column="orderitem_amount" property="amount" />
+			
+			<association property="cellphone" javaType="Cellphone">
+				<id column="c_id" property="id" />
+				<result column="c_brand" property="brand" />
+				<result column="c_model" property="model" />
+				<result column="c_price" property="price" />
+			</association>
+		</collection>
+	</resultMap>
+  </mapper>
