@@ -29,3 +29,36 @@ insert into cellphone values(
        '采用徕卡三摄，高档大气上档次',
        3000
 );
+create table cellphone_user(
+       u_id number primary key,
+       u_username varchar2(64) not null,
+       u_gender varchar2(32) not null,
+       u_password varchar2(64) not null
+);
+
+create sequence cellphone_user_id_seq start with 1 increment by 1 maxvalue 99999999;
+
+select u_username,u_password from cellphone_user where u_username='张三丰';
+
+
+select * from cellphone_user;
+
+
+cellphone_user_id_seq.nextval
+
+  		insert into cellphone_user (u_id,u_name,u_gender,u_password) 
+  		values (cellphone_user_id_seq.nextval,'张三丰','Male','123456');
+      
+      
+insert into cellphone_user values(
+       cellphone_user_id_seq.nextval,'张天爱','Female','$2a$10$pyhoz7k3QLux1jrJmuE.ZOenAbfrGpa8cSMYa4xs9reYaDsUyXsfG'
+); 
+
+alter table cellphone_user add (lastdate date default sysdate);
+ 
+
+alter table cellphone_user drop column lastdate ;  
+
+update cellphone_user set lastdate=sysdate where u_id=6;
+
+update cellphone_user set lastdate=sysdate where u_id=6

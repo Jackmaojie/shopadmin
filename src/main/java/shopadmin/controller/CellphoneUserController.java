@@ -23,7 +23,7 @@ public class CellphoneUserController {
 		this.cellphoneUserService = cellphoneUserService;
 	}
 	//-----------------------用户列表----------------------------------------------------------------------
-	@RequestMapping(method=RequestMethod.GET,value="/cellphoneusers/")
+	@RequestMapping(method=RequestMethod.GET,value="/cellphoneUsers/")
 	public String list(Model model){
 		List<CellphoneUser> cellphoneUsers=cellphoneUserService.findAll();
 		model.addAttribute("cellphoneUsers", cellphoneUsers);
@@ -31,7 +31,7 @@ public class CellphoneUserController {
 	}
 	//=====================================================================================================
 	//----------------------用户详情-------------------------------------------------------------
-	@RequestMapping(method=RequestMethod.GET,value="/cellphoneusers/{id}")
+	@RequestMapping(method=RequestMethod.GET,value="/cellphoneUsers/{id}")
 	public String details(@PathVariable Long id,Model model){
 		CellphoneUser cellphoneUser=cellphoneUserService.findOne(id);
 		model.addAttribute("cellphoneUser", cellphoneUser);	

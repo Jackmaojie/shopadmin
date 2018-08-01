@@ -15,25 +15,18 @@
 	</style>
 </head>
 <body>
-	<div class="header">
-		<ul class="ultable">
-			<li>手　　机</li>
-			<li><a href="${contextPath}/cellphones/">手机列表</a></li>	
-			<li><a href="${contextPath}/cellphones/add">上架手机</a></li>					
-		</ul> 
-		<ul class="ultable">
-			<li>用户</li>
-			<li><a href="${contextPath}/cellphoneusers/">用户列表</a></li>
-		</ul>	
-		
+	<a href="${contextPath}/">首页</a>
+	<div class="header">	
 		<table>
 			<tr>
 				<th>手　　机</th>
 				<th>用　　户</th>
+				<th>订　　单</th>
 			</tr>	
 			<tr>
 				<td><a href="${contextPath}/cellphones/">手机列表</a></td>
-				<td><a href="${contextPath}/cellphoneusers/">用户列表</a></td>
+				<td><a href="${contextPath}/cellphoneUsers/">用户列表</a></td>
+				<td><a href="${contextPath}/cellphoneOrders/">订单列表</a></td>
 			</tr>
 			<tr>
 				<td><a href="${contextPath}/cellphones/add">上架手机</a></td>
@@ -48,8 +41,8 @@
    	 <!-- 把t:layout标签的内容插入此处 -->
    		 <jsp:doBody />
   	</div>
-  
-  <div class="footer">copyright 2018</div>
+
+  <div class="footer" style="color:#dDaAbB"><I>copyright</I> 2018</div>
 		
 </body>
 </html>

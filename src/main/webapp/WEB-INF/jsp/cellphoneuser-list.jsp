@@ -7,18 +7,23 @@
 	<style type="text/css">
 		.menu {
 			display: inline-block;
-			color: #00AA00;
+			color: #00AA0B;
 		}
 	</style>
 	<div>
-		<ul class="menu">
+		<table class="menu">
+			<tr>
+				<th>用户名</th>
+				<th>查看用户</th>
+			</tr>
 			<c:forEach items="${cellphoneUsers}" var="cellphoneUser">
-				<li>${cellphoneUser.username}<br>
-					<a href="${contextPath}/cellphoneusers/${cellphoneUser.id}">详情</a> 
-				</li>
+				<tr>
+					<td>${cellphoneUser.username}</td>
+					<td><a href="${contextPath}/cellphoneUsers/${cellphoneUser.id}">详情</a></td> 
+				</tr>
 			</c:forEach>
 
-		</ul>
+		</table>
 	
 	</div>
 	
