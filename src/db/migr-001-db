@@ -11,24 +11,9 @@ create table cellphone (
        c_price number      
 );
 
-select * from cellphone;
-
-drop table cellphone;
 
 create sequence cellphone_id_seq start with 1000 increment by 1 maxvalue 99999999 minvalue 999;
 
-insert into cellphone values(
-       '#IMEI'||cellphone_id_seq.nextval ||'#'，
-       '华为',
-       '荣耀V12',
-       'Android',
-       '麒麟1000',
-       10240,
-       256,
-       '土豪金',
-       '采用徕卡三摄，高档大气上档次',
-       3000
-);
 create table cellphone_user(
        u_id number primary key,
        u_username varchar2(64) not null,
@@ -38,27 +23,65 @@ create table cellphone_user(
 
 create sequence cellphone_user_id_seq start with 1 increment by 1 maxvalue 99999999;
 
-select u_username,u_password from cellphone_user where u_username='张三丰';
-
-
-select * from cellphone_user;
-
-
 cellphone_user_id_seq.nextval
 
   		insert into cellphone_user (u_id,u_name,u_gender,u_password) 
   		values (cellphone_user_id_seq.nextval,'张三丰','Male','123456');
-      
-      
-insert into cellphone_user values(
-       cellphone_user_id_seq.nextval,'张天爱','Female','$2a$10$pyhoz7k3QLux1jrJmuE.ZOenAbfrGpa8cSMYa4xs9reYaDsUyXsfG'
-); 
 
-alter table cellphone_user add (lastdate date default sysdate);
+create table shopping_cart_item (
+       user_id not null,
+       cellphone_id not null,
+       amount number,
+       --user_id 外键约束
+       constraint USER_ID_FK_CELLPHONE_USER_U_ID foreign key(user_id) 
+	references cellphone_user(u_id),
+       --cellphone_id 外键约束
+       constraint CELLPHONE_ID_FK_CELLPHONE_C_ID foreign key(cellphone_id) 
+	references cellphone(c_id),
+       --联合主键
+       constraint PK_SHOPPING_CART_ITEM primary key (user_id,cellphone_id)
+              
+);
+
+ create table receiving_address(
+        address_id number not null primary key,
+        address_user_id number not null,
+        receiving_name varchar2(64) not null,
+        phonenumber varchar2(128) not null,
+        detailed_address varchar2(256) not null,
+        constraint FK_CELLPHONE_USER_U_ID foreign key(address_user_id) 
+	      references cellphone_user(u_id)
+ );
+ 
+ create table cellphone_order (
+        cellphone_order_id number not null primary key,
+        order_user_id number not null,
+        order_address_id number not null,
+        order_creation_time date,
+        order_state varchar2(64) not null,
+        constraint ORDER_FK_CELLPHONE_USER_U_ID foreign key(order_user_id) 
+	      references cellphone_user(u_id),
+        constraint FK_RECEIVING_ADDRESS_ID foreign key(order_address_id) 
+	      references receiving_address(address_id)
+ );
+ 
+  create table ordetitem_cellphone (
+       orderitem_id not null,
+       orderitem_cellphone_id not null,
+       orderitem_amount number,
+       --user_id 外键约束
+       constraint FK_CELLPHONE_ORDER_ID foreign key(orderitem_id) 
+	     references cellphone_order(cellphone_order_id) on delete cascade,
+       --cellphone_id 外键约束
+       constraint ORDERITEM_FK_CELLPHONE_C_ID foreign key(orderitem_cellphone_id) 
+	references cellphone(c_id),
+       --联合主键
+       constraint PK_ORDERITEM_CELLPHONE primary key (orderitem_id,orderitem_cellphone_id)
+              
+); 
+  
  
 
-alter table cellphone_user drop column lastdate ;  
 
-update cellphone_user set lastdate=sysdate where u_id=6;
 
-update cellphone_user set lastdate=sysdate where u_id=6
+          
